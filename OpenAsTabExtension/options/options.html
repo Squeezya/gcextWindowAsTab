@@ -3,14 +3,8 @@
 <head><title>My Test Extension Options</title></head>
 <body>
 
-  <label for="whitelistToAdd">WhiteList domain (regex pattern, eg: "http://mail.google.com/*"):</label>
-  <input id="whitelistToAdd" type="text" name="whitelistToAdd"><br>
-
-  <div>
-    <p>Whitelist:</p>
-    <ul id="list">
-    </ul>
-  </div>
+  <label for="whitelistTextArea">WhiteList domain (regex pattern, eg: "http://mail.google.com/*") Write ONE per line:<br/>Multiple wildcards allowed per domain.</label>
+  <textarea id="whitelistTextArea" name="whitelistTextArea" rows="10" cols="100"></textarea>
 
   <div id="status"></div>
   <button id="save">Save</button>

@@ -1,8 +1,9 @@
 // Saves options to chrome.storage
 function save_options() {
-  var color = document.getElementById('color').value;
+  var whitelistText = document.getElementById('whitelistTextArea').value;
+  var whitelistArray = whitelistText.split(/\n/);
   chrome.storage.sync.set({
-    whitelist: []
+    whitelist: whitelistArray
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -13,10 +14,8 @@ function save_options() {
   });
 }
 
-// Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
 function restore_options() {
-  // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
     whitelist: [
       {
@@ -24,23 +23,8 @@ function restore_options() {
       }
     ]
   }, function(items) {
-    display_list(items.whitelist);
+    document.getElementById('whitelistTextArea').value = items.whitelist.join("\n");
   });
-}
-
-function display_list(whitelist) {
-  var ul = document.getElementById("list");
-  for (var i = 0; i < whitelist.length; i++) {
-    var li = document.createElement("li");
-    li.textContent =  whitelist[i].pattern;
-    li.addEventListener('click', deleteItem, false);
-    ul.appendChild(li);
-  }
-}
-
-function deleteItem(e) {
-  var status = document.getElementById('status');
-  status.textContent = e;
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);

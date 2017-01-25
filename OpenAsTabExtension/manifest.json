@@ -1,21 +1,23 @@
 {
   "manifest_version": 2,
-  "name": "Open window as TAB",
-  "version": "0.1",
+  "name": "Window To Tab",
+  "description": "This extension opens popups as new tabs for the whitelisted domains.",
+  "version": "1.0.2",
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "<all_urls>"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://*.appway.com/admin/*"
+        "<all_urls>"
       ],
       "js": ["content.js"]
     }
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["/background.js"]
   },
   "browser_action": {
     "default_icon": "images/tabs16.png"

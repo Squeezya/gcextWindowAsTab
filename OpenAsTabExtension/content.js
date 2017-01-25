@@ -1,8 +1,15 @@
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    alert("asd");
-    if( request.message === "clicked_browser_action" ) {
-      alert("yo: " + request.bool);
+// content.js
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+  if (msg.message) {
+    switch(msg.message) {
+      case "CURRENT_TAB":
+        sendResponse('OK');
+        break;
+      case "POPUP_TAB":
+        sendResponse('OK');
+        break;
     }
+
   }
-);
+  return true;
+});
